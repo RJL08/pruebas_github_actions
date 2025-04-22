@@ -1,0 +1,34 @@
+name: Jobs y Steps - Ejercicio 1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  basic-tasks:
+    runs-on: ubuntu-lastes
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v3
+
+      - name: Mostrar fecha y hora actual
+        run: date
+
+      - name: Crear archivo de texto
+        run: echo "Archivo generado por GitHub Actions el $(date)" > archivo_ejercicio.txt
+
+      - name: Listar archivos en el directorio actual
+        run: ls -la
+
+      - name: Configurar Git con tu usuario
+        run: |
+          git config user.name "RjimenezL"
+          git config user.email "rjimenez@stemdo.io"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+      
+
+      - name: Hacer commit y push
+        run: |
+          git add archivo_ejercicio.txt
+          git commit -m " Archivo generado por workflow"
+          git push
