@@ -5,7 +5,7 @@ on:
 
 jobs:
   basic-tasks:
-    runs-on: ubuntu-lastes
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout del repositorio
